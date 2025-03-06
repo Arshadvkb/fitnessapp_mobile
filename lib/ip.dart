@@ -77,7 +77,7 @@ class _RestaurantIpPageState extends State<RestaurantIpPage> {
                         ),
                         SizedBox(height: 20),
                         Text(
-                          'Restaurant Connect',
+                          'Gym Connect',
                           style: TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
@@ -88,7 +88,7 @@ class _RestaurantIpPageState extends State<RestaurantIpPage> {
                         TextField(
                           controller: _usernameController,
                           decoration: InputDecoration(
-                            labelText: 'Restaurant Ip',
+                            labelText: 'Gym Ip',
                             prefixIcon: Icon(Icons.vpn_key, color: Colors.teal),
                             filled: true,
                             fillColor: Colors.teal[50],
