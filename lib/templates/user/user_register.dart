@@ -111,55 +111,7 @@ class _UserRegisterState extends State<UserRegister> {
                     return null;
                   },
                 ),
-                TextFormField(
-                  controller: _genderController,
-                  decoration: const InputDecoration(
-                    labelText: 'Gender',
-                    labelStyle: TextStyle(color: Colors.green),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.green),
-                    ),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your gender';
-                    }
-                    return null;
-                  },
-                ),
-                TextFormField(
-                  controller: _addressController,
-                  decoration: const InputDecoration(
-                    labelText: 'Address',
-                    labelStyle: TextStyle(color: Colors.green),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(color: Colors.green),
-                    ),
-                  ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Please enter your address';
-                    }
-                    return null;
-                  },
-                ),
                 const SizedBox(height: 10),
-                Row(
-                  children: [
-                    ElevatedButton(
-                      onPressed: _pickImage,
-                      child: const Text('Pick Image'),
-                    ),
-                    const SizedBox(width: 10),
-                    _image != null
-                        ? Image.file(
-                            _image!,
-                            width: 100,
-                            height: 100,
-                          )
-                        : const Text('No image selected'),
-                  ],
-                ),
                 TextFormField(
                   controller: _goalController,
                   decoration: const InputDecoration(
@@ -227,6 +179,58 @@ class _UserRegisterState extends State<UserRegister> {
                   },
                 ),
                 const SizedBox(height: 20),
+                const SizedBox(height: 20),
+                Row(
+                  children: [
+                    const Text(
+                      'Gender:',
+                      style: TextStyle(color: Colors.green),
+                    ),
+                    Radio<String>(
+                      value: 'Male',
+                      groupValue: _genderController.text,
+                      onChanged: (value) {
+                        setState(() {
+                          _genderController.text = value!;
+                        });
+                      },
+                    ),
+                    const Text('Male'),
+                    Radio<String>(
+                      value: 'Female',
+                      groupValue: _genderController.text,
+                      onChanged: (value) {
+                        setState(() {
+                          _genderController.text = value!;
+                        });
+                      },
+                    ),
+                    const Text('Female'),
+                  ],
+                ),
+                if (_genderController.text.isEmpty)
+                  const Text(
+                    'Please select your gender',
+                    style: TextStyle(color: Colors.red),
+                  ),
+                const SizedBox(height: 20),
+                Row(
+                  children: [
+                    ElevatedButton(
+                      onPressed: _pickImage,
+                      child: const Text('Pick Image'),
+                    ),
+                    const SizedBox(width: 10),
+                    _image != null
+                        ? Image.file(
+                            _image!,
+                            width: 100,
+                            height: 100,
+                          )
+                        : const Text('No image selected'),
+                  ],
+                ),
+                const SizedBox(height: 20),
                 ElevatedButton(
                   onPressed: () {
                     if (_formKey.currentState!.validate()) {
@@ -260,4 +264,5 @@ class _UserRegisterState extends State<UserRegister> {
     _descriptionController.dispose();
     super.dispose();
   }
+//  .post(Uri.parse(url + "user_register"), body: {}
 }

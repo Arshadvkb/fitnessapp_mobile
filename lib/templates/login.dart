@@ -113,7 +113,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Restaurant Login System',
       theme: ThemeData(
-        primarySwatch: Colors.teal,
+        primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: LoginPage(),
@@ -136,7 +136,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.teal[200]!, Colors.teal[400]!],
+            colors: [Colors.green!, Colors.green!],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),
@@ -151,7 +151,7 @@ class _LoginPageState extends State<LoginPage> {
                 Padding(
                   padding: const EdgeInsets.only(bottom: 50.0),
                   child: Text(
-                    'Smart Cafe',
+                    'FitnessApp',
                     style: TextStyle(
                       fontSize: 42,
                       fontWeight: FontWeight.bold,
@@ -193,7 +193,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                       SizedBox(height: 20),
                       Text(
-                        'Restaurant Login',
+                        'FitnessApp Login',
                         style: TextStyle(
                           fontSize: 28,
                           fontWeight: FontWeight.bold,
