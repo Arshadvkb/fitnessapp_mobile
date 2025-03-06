@@ -70,7 +70,7 @@ class _RestaurantIpPageState extends State<RestaurantIpPage> {
                           radius: 50,
                           backgroundColor: Colors.teal[100],
                           child: Icon(
-                            Icons.restaurant,
+                            Icons.fitness_center,
                             color: Colors.teal,
                             size: 60,
                           ),

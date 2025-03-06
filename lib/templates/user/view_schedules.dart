@@ -212,8 +212,6 @@ class _TimeSchedulePageState extends State<TimeSchedulePage> {
             date: schedule.fromTime,
             time: schedule.toTime,
             trainer: schedule.trainer,
-            workout:
-                'Scheduled Workout', // You can add a workout field if it's available
           );
         },
       ),
@@ -225,13 +223,11 @@ class ScheduleCard extends StatelessWidget {
   final String date;
   final String time;
   final String trainer;
-  final String workout;
 
   const ScheduleCard({
     required this.date,
     required this.time,
     required this.trainer,
-    required this.workout,
   });
 
   @override
@@ -268,10 +264,6 @@ class ScheduleCard extends StatelessWidget {
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 5),
-          Text(
-            'Workout: $workout',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
         ],
       ),
     );

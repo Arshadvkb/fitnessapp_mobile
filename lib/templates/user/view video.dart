@@ -150,6 +150,10 @@ class _UserPostViewState extends State<UserPostView> {
                         Text("Name: ${video_name_[index]}",
                             style: const TextStyle(
                                 fontSize: 14, fontWeight: FontWeight.bold)),
+                        const SizedBox(height: 12),
+                        Text("Decription: ${description_[index]}",
+                            style: const TextStyle(
+                                fontSize: 14, fontWeight: FontWeight.bold)),
                         const SizedBox(height: 8),
                         const SizedBox(height: 8),
                       ],
