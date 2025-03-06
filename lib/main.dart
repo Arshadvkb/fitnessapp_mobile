@@ -15,8 +15,9 @@ class GymApp extends StatelessWidget {
         primarySwatch: Colors.green,
         scaffoldBackgroundColor: Colors.grey[100],
       ),
-      home: RestaurantIpPage(), // Set HomePage from user_home.dart as the default page
-      debugShowCheckedModeBanner: false, // Remove the debug badge
+      home:
+          RestaurantIpPage(), // Set HomePage from user_home.dart as the default page
+      debugShowCheckedModeBanner: false,
     );
   }
 }
