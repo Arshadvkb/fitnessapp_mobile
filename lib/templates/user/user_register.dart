@@ -1,6 +1,11 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+import 'package:fitnessappnew/templates/login.dart';
 
 class UserRegister extends StatefulWidget {
   const UserRegister({super.key});
@@ -18,7 +23,7 @@ class _UserRegisterState extends State<UserRegister> {
   final _confirmpasswordController = TextEditingController();
   final _placeController = TextEditingController();
   final _genderController = TextEditingController();
-  final _addressController = TextEditingController();
+  // final _addressController = TextEditingController();
   final _goalController = TextEditingController();
   final _descriptionController = TextEditingController();
   File? _image;
@@ -232,9 +237,36 @@ class _UserRegisterState extends State<UserRegister> {
                 ),
                 const SizedBox(height: 20),
                 ElevatedButton(
-                  onPressed: () {
+                  onPressed: () async {
                     if (_formKey.currentState!.validate()) {
                       // Process data.
+                      final sh = await SharedPreferences.getInstance();
+                      String url = sh.getString("url").toString();
+                      print("okkkkkkkkkkkkkkkkk");
+                      var data = await http
+                          .post(Uri.parse(url + "user_register"), body: {
+                        'name': _nameController.text,
+                        'phone': _mobileController.text,
+                        'email': _emailController.text,
+                        'place': _placeController.text,
+                        'goal': _goalController.text,
+                        'description': _descriptionController.text,
+                        'password': _passwordController.text,
+                        'confirmpassword': _confirmpasswordController.text,
+                        'gender': _genderController.text,
+                        'image': _image,
+                        'lid': sh.getString("lid").toString(),
+                      });
+                      var jsonData = json.decode(data.body);
+                      String status = jsonData['task'].toString();
+                      if (status == "valid") {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(builder: (context) => LoginPage()),
+                        );
+                      } else {
+                        print("error");
+                      }
                     }
                   },
                   style: ElevatedButton.styleFrom(
@@ -259,10 +291,9 @@ class _UserRegisterState extends State<UserRegister> {
     _confirmpasswordController.dispose();
     _placeController.dispose();
     _genderController.dispose();
-    _addressController.dispose();
+    // _addressController.dispose();
     _goalController.dispose();
     _descriptionController.dispose();
     super.dispose();
   }
-//  .post(Uri.parse(url + "user_register"), body: {}
 }
