@@ -39,7 +39,8 @@ dependencies:
   image_picker:
   fluttertoast:
   http:
-
+  video_player: 
+ 
 
 
 dev_dependencies:

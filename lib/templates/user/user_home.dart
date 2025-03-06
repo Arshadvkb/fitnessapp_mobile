@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import '../login.dart';
-import 'package:fitnessappnew/templates/user/view_online_video.dart';
+import 'package:fitnessappnew/templates/user/view video.dart';
 import 'package:fitnessappnew/templates/user/view_schedules.dart';
 import 'package:fitnessappnew/templates/user/track_your_workout.dart';
 import 'package:fitnessappnew/templates/user/view_health_tips.dart';
@@ -107,8 +107,7 @@ class HomePage extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                           VideoProvider()),
+                                      builder: (context) => UserViewCase()),
                                 );
                               },
                             ),
