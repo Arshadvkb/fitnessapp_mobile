@@ -119,7 +119,7 @@ class HomePage extends StatelessWidget {
                                   context,
                                   MaterialPageRoute(
                                       builder: (context) =>
-                                          const time_schedule()),
+                                          const TimeSchedulePage()),
                                 );
                                 // Navigate to schedule page
                               },
