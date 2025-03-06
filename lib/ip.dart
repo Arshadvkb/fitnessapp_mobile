@@ -102,23 +102,23 @@ class _RestaurantIpPageState extends State<RestaurantIpPage> {
                             ),
                           ),
                         ),
-                        SizedBox(height: 24),
+                        const SizedBox(height: 24),
                         ElevatedButton(
                           onPressed: () {
                             senddata();
                           },
                           style: ElevatedButton.styleFrom(
-                            primary: Colors.teal[600], // Button color
-                            padding: EdgeInsets.symmetric(
+                            backgroundColor: Colors.teal[600], // Button color
+                            padding: const EdgeInsets.symmetric(
                                 horizontal: 50, vertical: 15),
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            textStyle: TextStyle(fontSize: 18),
+                            textStyle: const TextStyle(fontSize: 18),
                           ),
-                          child: Text('Connect'),
+                          child: const Text('Connect'),
                         ),
-                        SizedBox(height: 20),
+                        const SizedBox(height: 20),
                       ],
                     ),
                   ),

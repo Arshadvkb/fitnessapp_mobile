@@ -1,11 +1,10 @@
-import 'dart:convert';
-
 import 'package:flutter/material.dart';
 import 'package:image_picker/image_picker.dart';
 import 'dart:io';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 import 'package:fitnessappnew/templates/login.dart';
+import 'dart:convert';
 
 class UserRegister extends StatefulWidget {
   const UserRegister({super.key});
@@ -23,6 +22,9 @@ class _UserRegisterState extends State<UserRegister> {
   final _confirmpasswordController = TextEditingController();
   final _placeController = TextEditingController();
   final _genderController = TextEditingController();
+  final _dobController = TextEditingController();
+  final _heightController = TextEditingController();
+  final _weightController = TextEditingController();
   // final _addressController = TextEditingController();
   final _goalController = TextEditingController();
   final _descriptionController = TextEditingController();
@@ -118,6 +120,37 @@ class _UserRegisterState extends State<UserRegister> {
                 ),
                 const SizedBox(height: 10),
                 TextFormField(
+                  controller: _dobController,
+                  decoration: const InputDecoration(
+                    labelText: 'Date of Birth',
+                    labelStyle: TextStyle(color: Colors.green),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.green),
+                    ),
+                  ),
+                  onTap: () async {
+                    FocusScope.of(context).requestFocus(FocusNode());
+                    DateTime? pickedDate = await showDatePicker(
+                      context: context,
+                      initialDate: DateTime.now(),
+                      firstDate: DateTime(1900),
+                      lastDate: DateTime.now(),
+                    );
+                    if (pickedDate != null) {
+                      setState(() {
+                        _dobController.text =
+                            "${pickedDate.year}-${pickedDate.month}-${pickedDate.day}";
+                      });
+                    }
+                  },
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your date of birth';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
                   controller: _goalController,
                   decoration: const InputDecoration(
                     labelText: 'Goal',
@@ -145,6 +178,38 @@ class _UserRegisterState extends State<UserRegister> {
                   validator: (value) {
                     if (value == null || value.isEmpty) {
                       return 'Please enter your description';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _heightController,
+                  decoration: const InputDecoration(
+                    labelText: 'Height (cm)',
+                    labelStyle: TextStyle(color: Colors.green),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.green),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your height';
+                    }
+                    return null;
+                  },
+                ),
+                TextFormField(
+                  controller: _weightController,
+                  decoration: const InputDecoration(
+                    labelText: 'Weight (kg)',
+                    labelStyle: TextStyle(color: Colors.green),
+                    focusedBorder: UnderlineInputBorder(
+                      borderSide: BorderSide(color: Colors.green),
+                    ),
+                  ),
+                  validator: (value) {
+                    if (value == null || value.isEmpty) {
+                      return 'Please enter your weight';
                     }
                     return null;
                   },
@@ -241,32 +306,50 @@ class _UserRegisterState extends State<UserRegister> {
                     if (_formKey.currentState!.validate()) {
                       // Process data.
                       final sh = await SharedPreferences.getInstance();
-                      String url = sh.getString("url").toString();
-                      print("okkkkkkkkkkkkkkkkk");
-                      print(url);
-                      var data = await http
-                          .post(Uri.parse(url + "/user_register"), body: {
-                        'name': _nameController.text,
-                        'phone': _mobileController.text,
-                        'email': _emailController.text,
-                        'place': _placeController.text,
-                        'goal': _goalController.text,
-                        'description': _descriptionController.text,
-                        'password': _passwordController.text,
-                        'confirmpassword': _confirmpasswordController.text,
-                        'gender': _genderController.text,
-                        'image': _image,
-                        'lid': sh.getString("lid").toString(),
-                      });
-                      var jsonData = json.decode(data.body);
-                      String status = jsonData['task'].toString();
-                      if (status == "valid") {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(builder: (context) => LoginPage()),
-                        );
+                      String? url = sh.getString("url");
+                      if (url != null) {
+                        print("okkkkkkkkkkkkkkkkk");
+                        print(url);
+                        var request = http.MultipartRequest(
+                            'POST', Uri.parse(url + "/user_register"));
+                        request.fields['name'] = _nameController.text;
+                        request.fields['phone'] = _mobileController.text;
+                        request.fields['email'] = _emailController.text;
+                        request.fields['place'] = _placeController.text;
+                        request.fields['goal'] = _goalController.text;
+                        request.fields['description'] =
+                            _descriptionController.text;
+                        request.fields['password'] = _passwordController.text;
+                        request.fields['confirm_password'] =
+                            _confirmpasswordController.text;
+                        request.fields['gender'] = _genderController.text;
+                        request.fields['dob'] = _dobController.text;
+                        request.fields['height'] = _heightController.text;
+                        request.fields['weight'] = _weightController.text;
+                        if (_image != null) {
+                          request.files.add(await http.MultipartFile.fromPath(
+                              'image', _image!.path));
+                        }
+                        var response = await request.send();
+                        if (response.statusCode == 200) {
+                          var responseData =
+                              await response.stream.bytesToString();
+                          var jsonData = json.decode(responseData);
+                          String status = jsonData['status'].toString();
+                          if (status == "ok") {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => LoginPage()),
+                            );
+                          } else {
+                            print("error");
+                          }
+                        } else {
+                          print("Server error");
+                        }
                       } else {
-                        print("error");
+                        print("URL not found in SharedPreferences");
                       }
                     }
                   },
@@ -292,6 +375,9 @@ class _UserRegisterState extends State<UserRegister> {
     _confirmpasswordController.dispose();
     _placeController.dispose();
     _genderController.dispose();
+    _dobController.dispose();
+    _heightController.dispose();
+    _weightController.dispose();
     // _addressController.dispose();
     _goalController.dispose();
     _descriptionController.dispose();
