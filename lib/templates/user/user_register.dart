@@ -243,8 +243,9 @@ class _UserRegisterState extends State<UserRegister> {
                       final sh = await SharedPreferences.getInstance();
                       String url = sh.getString("url").toString();
                       print("okkkkkkkkkkkkkkkkk");
+                      print(url);
                       var data = await http
-                          .post(Uri.parse(url + "user_register"), body: {
+                          .post(Uri.parse(url + "/user_register"), body: {
                         'name': _nameController.text,
                         'phone': _mobileController.text,
                         'email': _emailController.text,
