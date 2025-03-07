@@ -50,6 +50,7 @@ class _HealthtipState extends State<Healthtip> {
                         // Process data.
                         final sh = await SharedPreferences.getInstance();
                         String? url = sh.getString("url");
+                        String? lid = sh.getString("lid");
 
                         if (url != null) {
                           print("okkkkkkkkkkkkkkkkk");
@@ -60,6 +61,7 @@ class _HealthtipState extends State<Healthtip> {
                               _tipTitleController.text;
                           request.fields['tip_description'] =
                               _tipDescriptionController.text;
+                          request.fields['lid'] = lid!;
 
                           var response = await request.send();
                           if (response.statusCode == 200) {
