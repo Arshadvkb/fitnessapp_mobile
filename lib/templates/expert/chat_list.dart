@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'side_menu.dart';
 
 class ChatListPage extends StatelessWidget {
   const ChatListPage({super.key});
@@ -9,6 +10,7 @@ class ChatListPage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Chat List'),
       ),
+      drawer: const SideMenu(),
       body: ListView.builder(
         itemCount: 10, // Replace with the actual number of people
         itemBuilder: (context, index) {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'chat_list.dart';
+import 'side_menu.dart';
 
 class ExpertHome extends StatelessWidget {
   const ExpertHome({super.key});
@@ -22,43 +23,7 @@ class ExpertHome extends StatelessWidget {
           ),
         ],
       ),
-      drawer: Drawer(
-        child: ListView(
-          padding: EdgeInsets.zero,
-          children: <Widget>[
-            DrawerHeader(
-              decoration: BoxDecoration(
-                color: Colors.green,
-              ),
-              child: const Text(
-                'Expert Panel',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 24,
-                ),
-              ),
-            ),
-            ListTile(
-              leading: Icon(Icons.home),
-              title: const Text('Home'),
-              onTap: () {
-                Navigator.pop(context);
-              },
-            ),
-            ListTile(
-              leading: Icon(Icons.chat),
-              title: const Text('Chat List'),
-              onTap: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(builder: (context) => const ChatListPage()),
-                );
-              },
-            ),
-            // Add more navigation items here
-          ],
-        ),
-      ),
+      drawer: const SideMenu(),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
