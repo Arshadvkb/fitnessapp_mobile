@@ -98,6 +98,7 @@
 
 import 'dart:convert';
 
+import 'package:fitnessappnew/templates/expert/expert_home.dart';
 import 'package:fitnessappnew/templates/user/user_home.dart';
 import 'package:fitnessappnew/templates/user/user_register.dart';
 import 'package:flutter/material.dart';
@@ -307,6 +308,12 @@ class _LoginPageState extends State<LoginPage> {
               context,
               MaterialPageRoute(builder: (context) => HomePage()),
             );
+          } else if (type == 'expert') {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ExpertHome()),
+            );
+            print("expert");
           }
         } else {
           Fluttertoast.showToast(msg: 'No User Found');
