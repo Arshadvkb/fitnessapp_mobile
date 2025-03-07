@@ -20,7 +20,8 @@ class SideMenu extends StatelessWidget {
               'Expert Panel',
               style: TextStyle(
                 color: Colors.white,
-                fontSize: 18,
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
@@ -29,8 +30,11 @@ class SideMenu extends StatelessWidget {
               padding: EdgeInsets.zero,
               children: <Widget>[
                 ListTile(
-                  leading: Icon(Icons.home),
-                  title: const Text('Home'),
+                  leading: Icon(Icons.home, color: Colors.green),
+                  title: const Text(
+                    'Home',
+                    style: TextStyle(fontSize: 18),
+                  ),
                   onTap: () {
                     Navigator.push(
                         context,
@@ -39,8 +43,11 @@ class SideMenu extends StatelessWidget {
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.chat),
-                  title: const Text('Chat List'),
+                  leading: Icon(Icons.chat, color: Colors.green),
+                  title: const Text(
+                    'Chat List',
+                    style: TextStyle(fontSize: 18),
+                  ),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -50,8 +57,11 @@ class SideMenu extends StatelessWidget {
                   },
                 ),
                 ListTile(
-                  leading: Icon(Icons.health_and_safety),
-                  title: const Text("New Tip"),
+                  leading: Icon(Icons.health_and_safety, color: Colors.green),
+                  title: const Text(
+                    "New Tip",
+                    style: TextStyle(fontSize: 18),
+                  ),
                   onTap: () {
                     Navigator.push(
                       context,
@@ -65,8 +75,11 @@ class SideMenu extends StatelessWidget {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.logout),
-            title: const Text('Logout'),
+            leading: Icon(Icons.logout, color: Colors.redAccent),
+            title: const Text(
+              'Logout',
+              style: TextStyle(fontSize: 18),
+            ),
             onTap: () {
               Navigator.push(
                 context,
