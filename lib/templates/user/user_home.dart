@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+
 import '../login.dart';
 import 'package:fitnessappnew/templates/user/view video.dart';
 import 'package:fitnessappnew/templates/user/view_schedules.dart';
@@ -14,6 +15,7 @@ class HomePage extends StatelessWidget {
       appBar: AppBar(
         title: const Text('Fitness App'),
         elevation: 0,
+        automaticallyImplyLeading: true, // Remove the back button
         actions: [
           IconButton(
             icon: Icon(Icons.login),
@@ -131,8 +133,7 @@ class HomePage extends StatelessWidget {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          const track_progress()),
+                                      builder: (context) => TrackProgress()),
                                 );
                                 // Navigate to progress page
                               },
