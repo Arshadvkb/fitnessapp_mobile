@@ -50,6 +50,7 @@ class _HealthtipState extends State<Healthtip> {
                         // Process data.
                         final sh = await SharedPreferences.getInstance();
                         String? url = sh.getString("url");
+
                         if (url != null) {
                           print("okkkkkkkkkkkkkkkkk");
                           print(url);
