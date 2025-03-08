@@ -1,3 +1,5 @@
+import 'package:fitnessappnew/templates/expert/side_menu.dart';
+import 'package:fitnessappnew/templates/user/user_menu.dart';
 import 'package:flutter/material.dart';
 
 import '../login.dart';
@@ -16,18 +18,8 @@ class HomePage extends StatelessWidget {
         title: const Text('Fitness App'),
         elevation: 0,
         automaticallyImplyLeading: true, // Remove the back button
-        actions: [
-          IconButton(
-            icon: Icon(Icons.login),
-            onPressed: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
-              );
-            },
-          ),
-        ],
       ),
+      drawer: Usermennu(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
