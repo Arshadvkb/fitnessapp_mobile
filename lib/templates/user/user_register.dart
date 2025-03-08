@@ -337,6 +337,7 @@ class _UserRegisterState extends State<UserRegister> {
                           var jsonData = json.decode(responseData);
                           String status = jsonData['status'].toString();
                           if (status == "ok") {
+                            print("registerd");
                             Navigator.push(
                               context,
                               MaterialPageRoute(
