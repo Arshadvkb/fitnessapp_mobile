@@ -10,7 +10,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Restaurant Order System',
       theme: ThemeData(
-        primarySwatch: Colors.teal,
+        primarySwatch: Colors.green,
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: RestaurantIpPage(),
@@ -40,7 +40,7 @@ class _RestaurantIpPageState extends State<RestaurantIpPage> {
         body: Container(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Colors.teal[200]!, Colors.teal[400]!],
+              colors: [Colors.teal[200]!, Color.fromARGB(255, 35, 203, 13)!],
               begin: Alignment.topLeft,
               end: Alignment.bottomRight,
             ),
@@ -68,10 +68,10 @@ class _RestaurantIpPageState extends State<RestaurantIpPage> {
                       children: <Widget>[
                         CircleAvatar(
                           radius: 50,
-                          backgroundColor: Colors.teal[100],
+                          backgroundColor: Colors.green,
                           child: Icon(
                             Icons.fitness_center,
-                            color: Colors.teal,
+                            color: Color.fromARGB(255, 7, 6, 0),
                             size: 60,
                           ),
                         ),
@@ -81,7 +81,7 @@ class _RestaurantIpPageState extends State<RestaurantIpPage> {
                           style: TextStyle(
                             fontSize: 28,
                             fontWeight: FontWeight.bold,
-                            color: Colors.teal[800],
+                            color: Colors.green,
                           ),
                         ),
                         SizedBox(height: 20),
