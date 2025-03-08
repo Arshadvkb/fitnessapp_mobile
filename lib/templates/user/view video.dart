@@ -1,3 +1,4 @@
+import 'package:fitnessappnew/templates/user/user_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
@@ -68,7 +69,8 @@ class _UserPostViewState extends State<UserPostView> {
         trainers.add(arr[i]['TRAINER'].toString());
         description.add(arr[i]['description'].toString());
         video_name.add(arr[i]['video_name'].toString());
-        file.add(sh.getString('imgurl').toString() + arr[i]['video']);
+        file.add(
+            sh.getString('imgurl').toString() + "media/" + arr[i]['video']);
       }
 
       setState(() {
@@ -115,6 +117,7 @@ class _UserPostViewState extends State<UserPostView> {
             ],
           ),
         ),
+        drawer: Usermennu(),
         body: ListView.builder(
           physics: const BouncingScrollPhysics(),
           itemCount: id_.length,

@@ -156,20 +156,6 @@ class HomePage extends StatelessWidget {
                                 );
                               },
                             ),
-                            // Navigate to chat with expert page
-                            QuickActionCard(
-                              icon: Icons.warning,
-                              title: 'Complaint',
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                    builder: (context) => const complaints(),
-                                  ),
-                                );
-                                // Navigate to page
-                              },
-                            ),
                           ],
                         ),
                       ],
