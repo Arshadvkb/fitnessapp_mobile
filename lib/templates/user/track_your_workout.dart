@@ -19,6 +19,11 @@ class _TrackProgressState extends State<TrackProgress>
   void initState() {
     super.initState();
     _tabController = TabController(length: 2, vsync: this);
+    _tabController.addListener(() {
+      setState(() {
+        _selectedIndex = _tabController.index;
+      });
+    });
   }
 
   @override
