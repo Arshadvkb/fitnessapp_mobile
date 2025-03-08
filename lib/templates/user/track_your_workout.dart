@@ -1,3 +1,4 @@
+import 'package:fitnessappnew/templates/user/add_workout.dart';
 import 'package:flutter/material.dart';
 import 'package:fitnessappnew/templates/user/diet.dart';
 import 'package:fitnessappnew/templates/user/workout.dart';
@@ -26,8 +27,17 @@ class _TrackProgressState extends State<TrackProgress>
     super.dispose();
   }
 
+  void changeTab() {
+    setState(() {
+      _selectedIndex = 1; // Change to desired index
+      _tabController.index = _selectedIndex; // Sync controller
+    });
+  }
+
   void _onWorkoutButtonPressed() {
     print('Workout');
+    Navigator.push(
+        context, MaterialPageRoute(builder: (context) => addworkout()));
     // Add your workout-specific functionality here
   }
 
@@ -65,7 +75,7 @@ class _TrackProgressState extends State<TrackProgress>
           onPressed: () {
             if (_selectedIndex == 0) {
               _onWorkoutButtonPressed();
-            } else {
+            } else if (_selectedIndex == 1) {
               _onDietButtonPressed();
             }
           },
