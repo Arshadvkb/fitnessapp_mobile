@@ -47,7 +47,7 @@ class _complaintsState extends State<complaints> {
                         print("okkkkkkkkkkkkkkkkk");
                         print(url);
                         var request = http.MultipartRequest(
-                            'POST', Uri.parse('$url/user_add_workout'));
+                            'POST', Uri.parse('$url/user_sent_complaint'));
                         request.fields['lid'] = lid!;
                         request.fields['complaint'] = _complaintController.text;
                         var response = await request.send();
