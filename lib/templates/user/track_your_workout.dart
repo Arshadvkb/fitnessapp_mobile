@@ -1,3 +1,4 @@
+import 'package:fitnessappnew/templates/user/add_diet.dart';
 import 'package:fitnessappnew/templates/user/add_workout.dart';
 import 'package:flutter/material.dart';
 import 'package:fitnessappnew/templates/user/diet.dart';
@@ -49,6 +50,7 @@ class _TrackProgressState extends State<TrackProgress>
   void _onDietButtonPressed() {
     print('Diet');
     // Add your diet-specific functionality here
+    Navigator.push(context, MaterialPageRoute(builder: (context) => adddiet()));
   }
 
   @override

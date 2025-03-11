@@ -5,6 +5,11 @@ class addworkout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text("this page add workout");
+    return Scaffold(
+      appBar: AppBar(
+        title: Text('add workout'),
+      ),
+      body: Center(child: Text('add workout')),
+    );
   }
 }
