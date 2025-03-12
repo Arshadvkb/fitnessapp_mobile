@@ -1,6 +1,7 @@
 import 'package:fitnessappnew/templates/expert/expert_home.dart';
 import 'package:fitnessappnew/templates/login.dart';
 import 'package:fitnessappnew/templates/user/user_home.dart';
+import 'package:fitnessappnew/templates/user/view_profile.dart';
 import 'package:flutter/material.dart';
 
 import 'complaints.dart';
@@ -58,6 +59,20 @@ class Usermennu extends StatelessWidget {
                           context,
                           MaterialPageRoute(
                               builder: (context) => const complaints()),
+                        );
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.person_2, color: Colors.green),
+                      title: const Text(
+                        'View Profile',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const viewprofile()),
                         );
                       },
                     ),
