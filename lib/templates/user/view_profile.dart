@@ -103,8 +103,7 @@ class _user_profileState extends State<user_profile> {
                                               },
                                               icon: Icon(
                                                 Icons.edit_outlined,
-                                                color: Colors
-                                                    .white, // changed color to green
+                                                color: Colors.white,
                                                 size: 18,
                                               )),
                                         )
@@ -139,33 +138,24 @@ class _user_profileState extends State<user_profile> {
                             Divider(),
                             ListTile(
                               title: Text('Place'),
-                              subtitle: Text(place),
+                              subtitle: Text(' ${place}  '),
                               leading: Icon(Icons.location_city,
-                                  color:
-                                      Colors.green), // changed color to green
+                                  color: Colors.green),
                             ),
                             Divider(),
                             ListTile(
-                              title: Text('Pin'),
-                              subtitle: Text(' ${pin}  '),
-                              leading: Icon(Icons.location_city,
-                                  color:
-                                      Colors.green), // changed color to green
-                            ),
-                            ListTile(
                               title: Text('Email'),
                               subtitle: Text('$email'),
-                              leading: Icon(Icons.mail_outline,
-                                  color:
-                                      Colors.green), // changed color to green
+                              leading:
+                                  Icon(Icons.mail_outline, color: Colors.green),
                             ),
+                            Divider(),
                             ListTile(
                               title: Text("Phone"),
                               subtitle: Text(phone),
-                              leading: Icon(Icons.phone,
-                                  color:
-                                      Colors.green), // changed color to green
+                              leading: Icon(Icons.phone, color: Colors.green),
                             ),
+                            Divider(),
                             SizedBox(
                               height: 10,
                             ),
@@ -184,7 +174,7 @@ class _user_profileState extends State<user_profile> {
                   elevation: 0.2,
                   color: Colors.white,
                   child: const Icon(Icons.arrow_back_ios_outlined,
-                      color: Colors.green), // changed color to green
+                      color: Colors.green),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(30.0),
                   ),
@@ -213,7 +203,6 @@ class _user_profileState extends State<user_profile> {
       final response = await http.post(urls, body: {
         'lid': lid,
       });
-
       if (response.statusCode == 200) {
         String status = jsonDecode(response.body)['status'];
         if (status == 'ok') {
@@ -221,7 +210,7 @@ class _user_profileState extends State<user_profile> {
             email = jsonDecode(response.body)['email'].toString();
             name = jsonDecode(response.body)['name'].toString();
             phone = jsonDecode(response.body)['phone'].toString();
-            pin = jsonDecode(response.body)['pin'].toString();
+
             place = jsonDecode(response.body)['place'].toString();
             image = sh.getString('imgurl2').toString() +
                 jsonDecode(response.body)['image'];

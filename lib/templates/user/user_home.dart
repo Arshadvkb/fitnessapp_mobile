@@ -22,7 +22,16 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         title: const Text('Fitness App'),
         elevation: 0,
-        automaticallyImplyLeading: true, // Remove the back button
+        automaticallyImplyLeading: true,
+        // Remove the back button
+        actions: [
+          IconButton(
+            icon: Icon(Icons.notifications),
+            onPressed: () {
+              // Handle notification icon press
+            },
+          ),
+        ],
       ),
       drawer: Usermennu(),
       body: SingleChildScrollView(
