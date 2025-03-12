@@ -41,6 +41,7 @@ dependencies:
   http: 
   video_player: 
   intl: 
+  url_launcher: 
 
 
 dev_dependencies:
