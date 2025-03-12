@@ -75,7 +75,7 @@ class _TrackProgressState extends State<TrackProgress>
           controller: _tabController,
           children: const [
             WorkoutTracking(),
-            DietTracking(),
+            Trackdiet(),
           ],
         ),
         floatingActionButton: FloatingActionButton(
