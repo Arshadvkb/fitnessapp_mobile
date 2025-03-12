@@ -12,16 +12,20 @@ class SideMenu extends StatelessWidget {
     return Drawer(
       child: Column(
         children: <Widget>[
-          const DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.green,
-            ),
-            child: Text(
-              'Expert Panel',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+          Container(
+            width: double.infinity,
+            color: Colors.green,
+            child: const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.green,
+              ),
+              child: Text(
+                'Expert Panel',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),

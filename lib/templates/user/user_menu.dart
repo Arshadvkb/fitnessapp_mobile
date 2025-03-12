@@ -11,69 +11,77 @@ class Usermennu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Drawer(
-      child: Column(
-        children: <Widget>[
-          const DrawerHeader(
-            decoration: BoxDecoration(
-              color: Colors.green,
-            ),
-            child: Text(
-              'USER MENU',
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 24,
-                fontWeight: FontWeight.bold,
+      child: Container(
+        color: Colors.green,
+        child: Column(
+          children: <Widget>[
+            const DrawerHeader(
+              decoration: BoxDecoration(
+                color: Colors.green,
+              ),
+              child: Text(
+                'USER MENU',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
-          ),
-          Expanded(
-            child: ListView(
-              padding: EdgeInsets.zero,
-              children: <Widget>[
-                ListTile(
-                  leading: Icon(Icons.home, color: Colors.green),
-                  title: const Text(
-                    'Home',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  onTap: () {
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context) => HomePage()));
-                  },
-                ),
-                ListTile(
-                  leading: Icon(Icons.warning, color: Colors.green),
-                  title: const Text(
-                    'Complaints',
-                    style: TextStyle(fontSize: 18),
-                  ),
-                  onTap: () {
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => const complaints()),
-                    );
-                  },
-                ),
+            Expanded(
+              child: Container(
+                color: Colors.white,
+                child: ListView(
+                  padding: EdgeInsets.zero,
+                  children: <Widget>[
+                    ListTile(
+                      leading: Icon(Icons.home, color: Colors.green),
+                      title: const Text(
+                        'Home',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomePage()));
+                      },
+                    ),
+                    ListTile(
+                      leading: Icon(Icons.warning, color: Colors.green),
+                      title: const Text(
+                        'Complaints',
+                        style: TextStyle(fontSize: 18),
+                      ),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const complaints()),
+                        );
+                      },
+                    ),
 
-                // Add more navigation items here
-              ],
+                    // Add more navigation items here
+                  ],
+                ),
+              ),
             ),
-          ),
-          ListTile(
-            leading: Icon(Icons.logout, color: Colors.redAccent),
-            title: const Text(
-              'Logout',
-              style: TextStyle(fontSize: 18),
+            ListTile(
+              leading: Icon(Icons.logout, color: Colors.redAccent),
+              title: const Text(
+                'Logout',
+                style: TextStyle(fontSize: 18),
+              ),
+              onTap: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => LoginPage()),
+                );
+              },
             ),
-            onTap: () {
-              Navigator.push(
-                context,
-                MaterialPageRoute(builder: (context) => LoginPage()),
-              );
-            },
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
