@@ -45,7 +45,7 @@ class _trackdietPageState extends State<Trackdiet> {
         );
       });
     } else {
-      throw Exception('Failed to load time schedule');
+      throw Exception('Failed to load diet');
     }
   }
 
@@ -106,7 +106,7 @@ class ScheduleCard extends StatelessWidget {
         children: [
           SizedBox(height: 5),
           Text(
-            'Expert: $food',
+            'Food: $food',
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
           SizedBox(height: 5),

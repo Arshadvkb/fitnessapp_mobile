@@ -74,7 +74,7 @@ class _TrackProgressState extends State<TrackProgress>
         body: TabBarView(
           controller: _tabController,
           children: const [
-            WorkoutTracking(),
+            Trackworkout(),
             Trackdiet(),
           ],
         ),
