@@ -83,10 +83,15 @@ class _TimeSchedulePageState extends State<TimeSchedulePage> {
         itemCount: _scheduleItems.length,
         itemBuilder: (context, index) {
           final schedule = _scheduleItems[index];
-          return ScheduleCard(
-            date: schedule.fromTime,
-            time: schedule.toTime,
-            trainer: schedule.trainer,
+          return Column(
+            children: [
+              ScheduleCard(
+                date: schedule.fromTime,
+                time: schedule.toTime,
+                trainer: schedule.trainer,
+              ),
+              SizedBox(height: 16), // Add gap between containers
+            ],
           );
         },
       ),
@@ -108,6 +113,7 @@ class ScheduleCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
+      width: double.infinity, // Make container full width
       padding: EdgeInsets.all(10),
       decoration: BoxDecoration(
         color: Colors.white,

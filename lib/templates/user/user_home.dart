@@ -142,8 +142,7 @@ class _HomePageState extends State<HomePage> {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                      builder: (context) =>
-                                          const health_tips()),
+                                      builder: (context) => const healthtips()),
                                 );
                                 // Navigate to health tips page
                               },
