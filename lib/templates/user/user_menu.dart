@@ -72,7 +72,8 @@ class Usermennu extends StatelessWidget {
                         Navigator.push(
                           context,
                           MaterialPageRoute(
-                              builder: (context) => const viewprofile()),
+                              builder: (context) =>
+                                  user_profile(title: 'View Profile')),
                         );
                       },
                     ),

@@ -77,6 +77,8 @@ class _TimeSchedulePageState extends State<TimeSchedulePage> {
     return Scaffold(
       appBar: AppBar(
         title: Text('Time Schedule'),
+        iconTheme:
+            IconThemeData(color: Colors.green), // Change icon color to green
       ),
       body: ListView.builder(
         padding: EdgeInsets.all(20),
