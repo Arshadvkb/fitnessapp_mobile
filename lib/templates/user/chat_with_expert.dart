@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:fitnessappnew/templates/chat.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -79,6 +80,15 @@ class _chatwithexpertState extends State<chatwithexpert> {
         title: Text('Chat with Expert'),
         iconTheme:
             IconThemeData(color: Colors.green), // Change icon color to green
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: (Colors.white),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: ListView.builder(
         padding: EdgeInsets.all(20),
@@ -87,10 +97,23 @@ class _chatwithexpertState extends State<chatwithexpert> {
           final schedule = _scheduleItems[index];
           return Column(
             children: [
-              ScheduleCard(
-                expert: schedule.expert,
-                image: schedule.image,
-                email: schedule.email,
+              GestureDetector(
+                onTap: () {
+                  // Navigate to another page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => MyChatPage(
+                          expert: schedule.expert,
+                          title: 'Chat with ${schedule.expert}'),
+                    ),
+                  );
+                },
+                child: ScheduleCard(
+                  expert: schedule.expert,
+                  image: schedule.image,
+                  email: schedule.email,
+                ),
               ),
               SizedBox(height: 16), // Add gap between containers
             ],
@@ -173,3 +196,6 @@ class ScheduleItem {
     );
   }
 }
+
+// Placeholder for the page to navigate to
+

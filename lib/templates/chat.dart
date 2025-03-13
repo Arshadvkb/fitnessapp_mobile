@@ -5,8 +5,8 @@ import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class MyChatPage extends StatefulWidget {
-  const MyChatPage({super.key, required this.title});
-
+  const MyChatPage({super.key, required this.title, required this.expert});
+  final String expert;
   final String title;
 
   @override
