@@ -169,6 +169,19 @@ class _HomePageState extends State<HomePage> {
                                 );
                               },
                             ),
+                            QuickActionCard(
+                              icon: Icons.money_outlined,
+                              title: 'Fee Payment',
+                              onTap: () {
+                                // Navigator.push(
+                                //   context,
+                                //   MaterialPageRoute(
+                                //     builder: (context) =>
+                                //         const chatwithexpert(),
+                                //   ),
+                                // );
+                              },
+                            ),
                           ],
                         ),
                       ],
