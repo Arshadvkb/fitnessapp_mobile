@@ -1,6 +1,8 @@
 import 'dart:convert';
-import 'package:fitnessappnew/templates/chat.dart';
+
+import 'package:fitnessappnew/templates/user/chat%20(1).dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -103,9 +105,8 @@ class _chatwithexpertState extends State<chatwithexpert> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (context) => MyChatPage(
-                          expert: schedule.expert,
-                          title: 'Chat with ${schedule.expert}'),
+                      builder: (context) =>
+                          MyChatPage(title: 'Chat with ${schedule.expert}'),
                     ),
                   );
                 },
@@ -113,6 +114,7 @@ class _chatwithexpertState extends State<chatwithexpert> {
                   expert: schedule.expert,
                   image: schedule.image,
                   email: schedule.email,
+                  LOGIN: schedule.LOGIN,
                 ),
               ),
               SizedBox(height: 16), // Add gap between containers
@@ -128,11 +130,13 @@ class ScheduleCard extends StatelessWidget {
   final String expert;
   final String image;
   final String email;
+  final String LOGIN;
 
   const ScheduleCard({
     required this.expert,
     required this.image,
     required this.email,
+    required this.LOGIN,
   });
 
   @override
@@ -171,6 +175,26 @@ class ScheduleCard extends StatelessWidget {
                 ' $email',
                 style: TextStyle(fontSize: 16),
               ),
+              ElevatedButton(
+                  onPressed: () async {
+                    try {
+                      Fluttertoast.showToast(msg: "Chat with ID: ${LOGIN}");
+                      SharedPreferences sh =
+                          await SharedPreferences.getInstance();
+                      sh.setString(
+                          'clid', LOGIN.toString()); // Ensure lid is a string
+                      // Navigate to the ChatScreen and pass the tutor ID
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MyChatApp(),
+                        ),
+                      );
+                    } catch (e) {
+                      Fluttertoast.showToast(msg: "Error: $e");
+                    }
+                  },
+                  child: Text('Chat'))
             ],
           ),
         ],
@@ -184,15 +208,20 @@ class ScheduleItem {
   final String expert;
   final String image;
   final String email;
+  final String LOGIN;
 
   ScheduleItem(
-      {required this.expert, required this.image, required this.email});
+      {required this.expert,
+      required this.image,
+      required this.email,
+      required this.LOGIN});
 
   factory ScheduleItem.fromJson(Map<String, dynamic> json) {
     return ScheduleItem(
       expert: json['name'],
       image: json['image'],
       email: json['email'],
+      LOGIN: json['LOGIN'],
     );
   }
 }

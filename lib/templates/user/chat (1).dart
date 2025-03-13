@@ -4,9 +4,29 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+void main() {
+  runApp(const MyChatApp());
+}
+
+class MyChatApp extends StatelessWidget {
+  const MyChatApp({super.key});
+
+  // This widget is the root of your application.
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'Flutter Demo',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+      ),
+      home: const MyChatPage(title: 'Flutter Demo Home Page'),
+    );
+  }
+}
+
 class MyChatPage extends StatefulWidget {
-  const MyChatPage({super.key, required this.title, required this.expert});
-  final String expert;
+  const MyChatPage({super.key, required this.title});
+
   final String title;
 
   @override
@@ -32,10 +52,10 @@ class _MyChatPageState extends State<MyChatPage> {
 
   _MyChatPageState() {
     // if (context.mounted) {
-    Timer.periodic(Duration(seconds: 2), (_) {
-      view_message();
-    });
-  }
+      Timer.periodic(Duration(seconds: 2), (_) {
+        view_message();
+      });
+    }
   // }
 
   List<ChatMessage> messages = [];
@@ -65,7 +85,7 @@ class _MyChatPageState extends State<MyChatPage> {
     try {
       final pref = await SharedPreferences.getInstance();
       String urls = pref.getString('url').toString();
-      String url = urls + "/User_viewchat";
+      String url = '$urls/user_viewchat';
 
       var data = await http.post(Uri.parse(url), body: {
         'from_id': pref.getString("lid").toString(),
@@ -154,7 +174,6 @@ class _MyChatPageState extends State<MyChatPage> {
           ListView.builder(
             itemCount: messages.length,
             shrinkWrap: true,
-            reverse: true, // Add this to reverse the order
             padding: EdgeInsets.only(top: 10, bottom: 50),
             physics: ScrollPhysics(),
             itemBuilder: (context, index) {
@@ -162,23 +181,19 @@ class _MyChatPageState extends State<MyChatPage> {
                 padding:
                     EdgeInsets.only(left: 14, right: 14, top: 10, bottom: 10),
                 child: Align(
-                  alignment:
-                      (messages[messages.length - 1 - index].messageType ==
-                              "receiver"
-                          ? Alignment.bottomLeft
-                          : Alignment.topRight),
+                  alignment: (messages[index].messageType == "receiver"
+                      ? Alignment.topLeft
+                      : Alignment.topRight),
                   child: Container(
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(20),
-                      color:
-                          (messages[messages.length - 1 - index].messageType ==
-                                  "receiver"
-                              ? Colors.grey.shade200
-                              : Colors.blue[200]),
+                      color: (messages[index].messageType == "receiver"
+                          ? Colors.grey.shade200
+                          : Colors.blue[200]),
                     ),
                     padding: EdgeInsets.all(16),
                     child: Text(
-                      messages[messages.length - 1 - index].messageContent,
+                      messages[index].messageContent,
                       style: TextStyle(fontSize: 15),
                     ),
                   ),
@@ -223,7 +238,7 @@ class _MyChatPageState extends State<MyChatPage> {
                         final pref = await SharedPreferences.getInstance();
                         String ip = pref.getString("url").toString();
 
-                        String url = ip + "User_sendchat";
+                        String url = ip + "/user_sendchat";
 
                         var data = await http.post(Uri.parse(url), body: {
                           'message': message,
@@ -250,7 +265,7 @@ class _MyChatPageState extends State<MyChatPage> {
                       color: Colors.white,
                       size: 18,
                     ),
-                    backgroundColor: Colors.green,
+                    backgroundColor: Colors.cyan,
                     elevation: 0,
                   ),
                 ],
