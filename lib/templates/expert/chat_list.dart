@@ -1,7 +1,6 @@
 import 'dart:convert';
 
 import 'package:fitnessappnew/templates/expert/chat2.dart';
-import 'package:fitnessappnew/templates/user/chat%20(1).dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;

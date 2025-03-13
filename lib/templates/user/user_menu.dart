@@ -48,6 +48,7 @@ class Usermennu extends StatelessWidget {
                         MaterialPageRoute(builder: (context) => HomePage()));
                   },
                 ),
+                Divider(),
                 ListTile(
                   leading: Icon(Icons.warning, color: Colors.green),
                   title: const Text(
@@ -62,6 +63,7 @@ class Usermennu extends StatelessWidget {
                     );
                   },
                 ),
+                Divider(),
                 ListTile(
                   leading: Icon(Icons.person_2, color: Colors.green),
                   title: const Text(
@@ -81,6 +83,7 @@ class Usermennu extends StatelessWidget {
               ],
             ),
           ),
+          Divider(),
           ListTile(
             leading: Icon(Icons.logout, color: Colors.redAccent),
             title: const Text(
