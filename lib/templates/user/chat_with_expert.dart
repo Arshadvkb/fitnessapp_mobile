@@ -1,3 +1,4 @@
+import 'package:fitnessappnew/templates/chat.dart';
 import 'package:flutter/material.dart';
 
 class chat_with_expert extends StatelessWidget {
@@ -8,6 +9,16 @@ class chat_with_expert extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text('CHAT_WITH_EXPERT'),
+      ),
+      body: ElevatedButton(
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+                builder: (context) => MyChatPage(title: 'Chat with Expert')),
+          );
+        },
+        child: const Text('CHAT_WITH_EXPERT'),
       ),
     );
   }
