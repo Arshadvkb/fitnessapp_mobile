@@ -39,7 +39,7 @@ class _LoginPageState extends State<LoginPage> {
       body: Container(
         decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [Colors.green!, Colors.green!],
+            colors: [Colors.teal[200]!, Color.fromARGB(255, 35, 203, 13)!],
             begin: Alignment.topLeft,
             end: Alignment.bottomRight,
           ),

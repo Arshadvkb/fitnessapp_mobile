@@ -56,6 +56,7 @@ class _UserPostViewState extends State<UserPostView> {
       SharedPreferences sh = await SharedPreferences.getInstance();
       String urls = sh.getString('url').toString();
       String url = '$urls/user_viewvideo';
+      print(urls);
       print(url);
 
       var data = await http.post(Uri.parse(url));
@@ -71,6 +72,7 @@ class _UserPostViewState extends State<UserPostView> {
         video_name.add(arr[i]['video_name'].toString());
         file.add(
             sh.getString('imgurl').toString() + "media/" + arr[i]['video']);
+        print(arr[i]['video']);
       }
 
       setState(() {

@@ -12,7 +12,7 @@ class ExpertHome extends StatelessWidget {
         title: const Text('Expert Home'),
         actions: <Widget>[
           IconButton(
-            icon: const Icon(Icons.add_alert),
+            icon: const Icon(Icons.notifications),
             onPressed: () {},
           ),
           IconButton(

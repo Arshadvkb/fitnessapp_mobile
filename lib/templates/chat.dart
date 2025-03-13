@@ -65,7 +65,7 @@ class _MyChatPageState extends State<MyChatPage> {
     try {
       final pref = await SharedPreferences.getInstance();
       String urls = pref.getString('url').toString();
-      String url = urls + "User_viewchat";
+      String url = urls + "/User_viewchat";
 
       var data = await http.post(Uri.parse(url), body: {
         'from_id': pref.getString("lid").toString(),
