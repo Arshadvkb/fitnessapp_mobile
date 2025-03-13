@@ -18,20 +18,20 @@ class MyChatApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
-        primarySwatch: Colors.green,
+        primarySwatch: Colors.blue,
       ),
-      home: const MyChatPage(title: 'Flutter Demo Home Page'),
+      home: const MyChatPage2(title: 'Flutter Demo Home Page'),
     );
   }
 }
 
-class MyChatPage extends StatefulWidget {
-  const MyChatPage({super.key, required this.title});
+class MyChatPage2 extends StatefulWidget {
+  const MyChatPage2({super.key, required this.title});
 
   final String title;
 
   @override
-  State<MyChatPage> createState() => _MyChatPageState();
+  State<MyChatPage2> createState() => _MyChatPageState();
 }
 
 class ChatMessage {
@@ -41,7 +41,7 @@ class ChatMessage {
   ChatMessage({required this.messageContent, required this.messageType});
 }
 
-class _MyChatPageState extends State<MyChatPage> {
+class _MyChatPageState extends State<MyChatPage2> {
   int _counter = 0;
   String name = "";
 
@@ -190,7 +190,7 @@ class _MyChatPageState extends State<MyChatPage> {
                       borderRadius: BorderRadius.circular(20),
                       color: (messages[index].messageType == "receiver"
                           ? Colors.grey.shade200
-                          : Colors.green[200]),
+                          : Colors.blue[200]),
                     ),
                     padding: EdgeInsets.all(16),
                     child: Text(
@@ -266,7 +266,7 @@ class _MyChatPageState extends State<MyChatPage> {
                       color: Colors.white,
                       size: 18,
                     ),
-                    backgroundColor: Colors.green,
+                    backgroundColor: Colors.cyan,
                     elevation: 0,
                   ),
                 ],

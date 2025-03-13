@@ -48,6 +48,7 @@ class SideMenu extends StatelessWidget {
                             builder: (context) => const ExpertHome()));
                   },
                 ),
+                Divider(),
                 ListTile(
                   leading: Icon(Icons.chat, color: Colors.green),
                   title: const Text(
@@ -58,10 +59,11 @@ class SideMenu extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => const ChatListPage()),
+                          builder: (context) => const chatwithexpert()),
                     );
                   },
                 ),
+                Divider(),
                 ListTile(
                   leading: Icon(Icons.health_and_safety, color: Colors.green),
                   title: const Text(
@@ -80,6 +82,7 @@ class SideMenu extends StatelessWidget {
               ],
             ),
           ),
+          Divider(),
           ListTile(
             leading: Icon(Icons.logout, color: Colors.redAccent),
             title: const Text(
