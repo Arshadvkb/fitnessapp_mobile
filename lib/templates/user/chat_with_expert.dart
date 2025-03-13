@@ -29,7 +29,7 @@ class _chatwithexpertState extends State<chatwithexpert> {
     }
 
     final response = await http.post(
-      Uri.parse(url + '/user_view_time'),
+      Uri.parse(url + '/user_view_expert'),
       headers: {
         'Content-Type': 'application/json', // Ensure you're sending JSON
       },
@@ -45,7 +45,7 @@ class _chatwithexpertState extends State<chatwithexpert> {
         );
       });
     } else {
-      throw Exception('Failed to load time schedule');
+      throw Exception('Failed to load expert details');
     }
   }
 
@@ -76,7 +76,7 @@ class _chatwithexpertState extends State<chatwithexpert> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Time Schedule'),
+        title: Text('Chat with Expert'),
         iconTheme:
             IconThemeData(color: Colors.green), // Change icon color to green
       ),
@@ -129,24 +129,27 @@ class ScheduleCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
         children: [
-          Text(
-            'Date: $expert',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          CircleAvatar(
+            radius: 30,
+            backgroundImage: NetworkImage(image),
           ),
-          SizedBox(height: 5),
-          Text(
-            'Time: $image',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          SizedBox(width: 10),
+          Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                ' $expert',
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 5),
+              Text(
+                ' $email',
+                style: TextStyle(fontSize: 16),
+              ),
+            ],
           ),
-          SizedBox(height: 5),
-          Text(
-            'Trainer: $email',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 5),
         ],
       ),
     );
@@ -164,9 +167,9 @@ class ScheduleItem {
 
   factory ScheduleItem.fromJson(Map<String, dynamic> json) {
     return ScheduleItem(
-      expert: json['TRAINER'],
-      image: json['from_time'],
-      email: json['to_time'],
+      expert: json['name'],
+      image: json['image'],
+      email: json['email'],
     );
   }
 }
