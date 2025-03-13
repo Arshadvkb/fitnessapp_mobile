@@ -15,6 +15,7 @@ class MyChatApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.blue,
@@ -52,10 +53,10 @@ class _MyChatPageState extends State<MyChatPage> {
 
   _MyChatPageState() {
     // if (context.mounted) {
-      Timer.periodic(Duration(seconds: 2), (_) {
-        view_message();
-      });
-    }
+    Timer.periodic(Duration(seconds: 2), (_) {
+      view_message();
+    });
+  }
   // }
 
   List<ChatMessage> messages = [];
