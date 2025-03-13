@@ -16,11 +16,10 @@ class MyChatApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
       theme: ThemeData(
         primarySwatch: Colors.green,
       ),
-      home: const MyChatPage(title: 'Flutter Demo Home Page'),
+      home: const MyChatPage(title: 'chat'),
     );
   }
 }
@@ -141,7 +140,7 @@ class _MyChatPageState extends State<MyChatPage> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.green,
         elevation: 0.0,
         leadingWidth: 0.0,
         title: Row(

@@ -141,7 +141,7 @@ class _MyChatPageState extends State<MyChatPage2> {
     return Scaffold(
       appBar: AppBar(
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.green,
         elevation: 0.0,
         leadingWidth: 0.0,
         title: Row(
@@ -190,7 +190,7 @@ class _MyChatPageState extends State<MyChatPage2> {
                       borderRadius: BorderRadius.circular(20),
                       color: (messages[index].messageType == "receiver"
                           ? Colors.grey.shade200
-                          : Colors.blue[200]),
+                          : Colors.green[200]),
                     ),
                     padding: EdgeInsets.all(16),
                     child: Text(
@@ -266,7 +266,7 @@ class _MyChatPageState extends State<MyChatPage2> {
                       color: Colors.white,
                       size: 18,
                     ),
-                    backgroundColor: Colors.cyan,
+                    backgroundColor: Colors.green,
                     elevation: 0,
                   ),
                 ],
