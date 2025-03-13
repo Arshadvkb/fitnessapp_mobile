@@ -139,7 +139,7 @@ class _RestaurantIpPageState extends State<RestaurantIpPage> {
 
     sh.setString('ip', ip);
     sh.setString('url', 'http://$ip:8000');
-    sh.setString('imgurl', 'http://$ip:8000/');
+    sh.setString('imgurl', 'http://$ip:8000');
     sh.setString('imgurl2', 'http://$ip:8000/');
     Navigator.push(
         context, MaterialPageRoute(builder: (context) => LoginPage()));

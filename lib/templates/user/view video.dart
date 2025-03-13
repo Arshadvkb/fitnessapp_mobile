@@ -56,7 +56,7 @@ class _UserPostViewState extends State<UserPostView> {
       SharedPreferences sh = await SharedPreferences.getInstance();
       String urls = sh.getString('url').toString();
       String url = '$urls/user_viewvideo';
-      print(urls);
+      print("path======" + urls);
       print(url);
 
       var data = await http.post(Uri.parse(url));
@@ -70,8 +70,7 @@ class _UserPostViewState extends State<UserPostView> {
         trainers.add(arr[i]['TRAINER'].toString());
         description.add(arr[i]['description'].toString());
         video_name.add(arr[i]['video_name'].toString());
-        file.add(
-            sh.getString('imgurl').toString() + "media/" + arr[i]['video']);
+        file.add(sh.getString('imgurl').toString() + "" + arr[i]['video']);
         print(arr[i]['video']);
       }
 
@@ -190,6 +189,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   @override
   void initState() {
     super.initState();
+    print("Video URL: ${widget.videoUrl}");
     _controller = VideoPlayerController.network(widget.videoUrl)
       ..addListener(() {
         if (_controller.value.hasError) {
