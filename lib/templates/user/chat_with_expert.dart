@@ -206,29 +206,30 @@ class ScheduleItem {
 }
 
 // Placeholder for the page to navigate to
-class MyChatPage2 extends StatelessWidget {
-  final String title;
+// class MyChatPage2 extends StatelessWidget {
+//   final String title;
 
-  const MyChatPage2({required this.title});
+//   const MyChatPage2({required this.title});
 
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(title),
-      ),
-      body: Center(
-        child: Text('Chat Screen - Implement your chat functionality here!'),
-      ),
-    );
-  }
-}
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text(title),
+//       ),
+//       body: Center(
+//         child: Text('Chat Screen - Implement your chat functionality here!'),
+//       ),
+//     );
+//   }
+// }
 
-class MyChatApp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      home: MyChatPage(title: 'Chat with Expert'),
-    );
-  }
-}
+// class MyChatApp2 extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: MyChatPage(title: 'Chat with Expert'),
+//     );
+//   }
+// }
