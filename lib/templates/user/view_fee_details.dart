@@ -125,9 +125,12 @@ class ScheduleCard extends StatelessWidget {
           ),
           SizedBox(height: 10),
           ElevatedButton(
-            onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => PaymentScreen()));
+            onPressed: () async {
+              SharedPreferences sh1 = await SharedPreferences.getInstance();
+              sh1.setString("amd", fees.toString());
+
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => PaymentScreen()));
             },
             child: Text('Pay Now'),
           ),

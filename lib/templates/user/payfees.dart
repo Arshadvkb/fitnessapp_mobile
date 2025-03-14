@@ -1,5 +1,4 @@
 import 'dart:convert';
-
 import 'package:fitnessappnew/templates/user/user_home.dart';
 import 'package:flutter/material.dart';
 import 'package:razorpay_flutter/razorpay_flutter.dart';
@@ -49,7 +48,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
   Future<void> h() async {
     SharedPreferences sh = await SharedPreferences.getInstance();
     setState(() {
-      amount_ = sh.getString("amd").toString().split(".")[0];
+      amount_ = sh.getString("amd")?.split(".")[0] ?? '';
     });
   }
 
@@ -62,7 +61,6 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   void _handlePaymentSuccess(PaymentSuccessResponse response) {
     print("Payment Success: ${response.paymentId}");
-
     // Handle success scenario here
   }
 
@@ -78,6 +76,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
 
   void _openCheckout(String amt) {
     try {
+      print('Opening Razorpay checkout with amount: $amt');
       int amount = int.parse(amt) * 100; // Amount in paise
       var options = {
         'key': 'rzp_test_edrzdb8Gbx5U5M',
@@ -94,10 +93,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
       };
 
       _razorpay.open(options);
-      print(_razorpay.toString());
-      print("okkkkkkkk");
     } catch (e) {
-      print("Error");
       print("Error in opening Razorpay: $e");
     }
   }
@@ -107,51 +103,49 @@ class _PaymentScreenState extends State<PaymentScreen> {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Colors.green,
-        title: Text('Razorpay '),
+        title: Text('Razorpay Payment'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            // Text(
-            //    'amount'+ amount_
-            // ),
-            // TextField(
-            //   controller: amount_,
-            //   keyboardType: TextInputType.number,
-            //   decoration: InputDecoration(labelText: 'Enter Amount'),
-            // ),
             SizedBox(height: 20.0),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
                   onPressed: () async {
-                    _openCheckout(amount_);
+                    print('Amount: $amount_');
+                    if (amount_.isNotEmpty) {
+                      _openCheckout(amount_);
+                    } else {
+                      print("Amount is empty or not set.");
+                    }
+
                     final sh = await SharedPreferences.getInstance();
                     String amount = amount_.toString();
-                    // String Passwd=passwordController.text.toString();
-                    String url = sh.getString("url").toString();
-                    String bid = sh.getString("sid").toString();
-                    String lid = sh.getString("lid").toString();
-                    print("okkkkkkkkkkkkkkkkk");
+                    String url = sh.getString("url")?.toString() ?? '';
+                    String bid = sh.getString("sid")?.toString() ?? '';
+                    String lid = sh.getString("lid")?.toString() ?? '';
+
+                    print("Sending request for payment...");
                     var data =
                         await http.post(Uri.parse(url + "/payment"), body: {
                       'sid': bid,
                       'lid': lid,
-                      // 'amount': amount,
                     });
+
                     var jasondata = json.decode(data.body);
                     String status = jasondata['status'].toString();
                     if (status == "ok") {
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) => HomePage()));
                     } else {
-                      print("error");
+                      print("Error in payment");
                     }
                   },
-                  child: Text('Pay Now  :' + 200.toString()),
+                  child: Text('Pay Now: ' + 200.toString()),
                 ),
               ],
             ),
