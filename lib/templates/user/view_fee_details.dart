@@ -122,6 +122,13 @@ class ScheduleCard extends StatelessWidget {
             'Date: $date',
             style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
           ),
+          SizedBox(height: 10),
+          ElevatedButton(
+            onPressed: () {
+              // Add your button action here
+            },
+            child: Text('Pay Now'),
+          ),
         ],
       ),
     );
@@ -132,7 +139,6 @@ class ScheduleCard extends StatelessWidget {
 class ScheduleItem {
   final int fees;
   final String status;
-
   final String date;
 
   ScheduleItem({required this.fees, required this.status, required this.date});
