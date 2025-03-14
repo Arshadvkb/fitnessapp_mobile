@@ -206,10 +206,10 @@ class ScheduleItem {
 }
 
 // Placeholder for the page to navigate to
-class MyChatPage extends StatelessWidget {
+class MyChatPage2 extends StatelessWidget {
   final String title;
 
-  const MyChatPage({required this.title});
+  const MyChatPage2({required this.title});
 
   @override
   Widget build(BuildContext context) {
