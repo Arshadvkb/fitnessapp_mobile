@@ -44,7 +44,7 @@ class _chatwithexpertState extends State<chatwithexpert> {
 
       setState(() {
         _scheduleItems = List<ScheduleItem>.from(
-          data['data'].map((item) => ScheduleItem.fromJson(item)),
+          data['data'].map((item) => ScheduleItem.fromJson(item, url)),
         );
       });
     } else {
@@ -217,10 +217,10 @@ class ScheduleItem {
       required this.email,
       required this.LOGIN});
 
-  factory ScheduleItem.fromJson(Map<String, dynamic> json) {
+  factory ScheduleItem.fromJson(Map<String, dynamic> json, String imageUrl) {
     return ScheduleItem(
       user: json['name'],
-      image: json['image'],
+      image: "$imageUrl/${json['image']}",
       email: json['email'],
       LOGIN: json['LOGIN'],
     );
