@@ -140,40 +140,43 @@ class ScheduleCard extends StatelessWidget {
             backgroundImage: NetworkImage(image),
           ),
           SizedBox(width: 10),
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Text(
-                ' $expert',
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 5),
-              Text(
-                ' $email',
-                style: TextStyle(fontSize: 16),
-              ),
-              ElevatedButton(
-                onPressed: () async {
-                  try {
-                    Fluttertoast.showToast(msg: "Chat with ID: ${LOGIN}");
-                    SharedPreferences sh =
-                        await SharedPreferences.getInstance();
-                    sh.setString(
-                        'clid', LOGIN.toString()); // Ensure lid is a string
-                    // Navigate to the ChatScreen and pass the tutor ID
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => MyChatApp(),
-                      ),
-                    );
-                  } catch (e) {
-                    Fluttertoast.showToast(msg: "Error: $e");
-                  }
-                },
-                child: Text('Chat'),
-              ),
-            ],
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  ' $expert',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 5),
+                Text(
+                  ' $email',
+                  style: TextStyle(fontSize: 16),
+                ),
+                SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () async {
+                    try {
+                      Fluttertoast.showToast(msg: "Chat with ID: ${LOGIN}");
+                      SharedPreferences sh =
+                          await SharedPreferences.getInstance();
+                      sh.setString(
+                          'clid', LOGIN.toString()); // Ensure lid is a string
+                      // Navigate to the ChatScreen and pass the tutor ID
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MyChatApp(),
+                        ),
+                      );
+                    } catch (e) {
+                      Fluttertoast.showToast(msg: "Error: $e");
+                    }
+                  },
+                  child: Text('Chat'),
+                ),
+              ],
+            ),
           ),
         ],
       ),
