@@ -100,12 +100,12 @@ class _user_profileState extends State<user_profile> {
                                           backgroundColor: Colors.green,
                                           child: IconButton(
                                               onPressed: () {
-                                                Navigator.push(
-                                                    context,
-                                                    MaterialPageRoute(
-                                                      builder: (context) =>
-                                                          editprofile(),
-                                                    ));
+                                                // Navigator.push(
+                                                //     context,
+                                                //     MaterialPageRoute(
+                                                //       builder: (context) =>
+                                                //           editprofile(),
+                                                //     ));
                                               },
                                               icon: Icon(
                                                 Icons.edit_outlined,
