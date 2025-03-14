@@ -1,5 +1,6 @@
 import 'package:fitnessappnew/templates/expert/side_menu.dart';
 import 'package:fitnessappnew/templates/user/user_menu.dart';
+import 'package:fitnessappnew/templates/user/view_fee_details.dart';
 import 'package:flutter/material.dart';
 
 import '../login.dart';
@@ -173,13 +174,13 @@ class _HomePageState extends State<HomePage> {
                               icon: Icons.money_outlined,
                               title: 'Fee Payment',
                               onTap: () {
-                                // Navigator.push(
-                                //   context,
-                                //   MaterialPageRoute(
-                                //     builder: (context) =>
-                                //         const chatwithexpert(),
-                                //   ),
-                                // );
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) =>
+                                        const view_fee_deatils(),
+                                  ),
+                                );
                               },
                             ),
                           ],
