@@ -124,16 +124,13 @@ class _PaymentScreenState extends State<PaymentScreen> {
                     }
 
                     final sh = await SharedPreferences.getInstance();
-                    String amount = amount_.toString();
                     String url = sh.getString("url")?.toString() ?? '';
-                    String bid = sh.getString("sid")?.toString() ?? '';
-                    String lid = sh.getString("lid")?.toString() ?? '';
+                     String lid = sh.getString("lid")?.toString() ?? '';
 
                     print("Sending request for payment...");
                     var data =
                         await http.post(Uri.parse(url + "/payment"), body: {
-                      'sid': bid,
-                      'lid': lid,
+                       'lid': lid,
                     });
 
                     var jasondata = json.decode(data.body);
@@ -145,7 +142,7 @@ class _PaymentScreenState extends State<PaymentScreen> {
                       print("Error in payment");
                     }
                   },
-                  child: Text('Pay Now: ' + 200.toString()),
+                  child: Text('Pay Now'),
                 ),
               ],
             ),
