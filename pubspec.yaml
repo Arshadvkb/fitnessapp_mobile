@@ -43,6 +43,7 @@ dependencies:
   intl: 
   url_launcher: 
   razorpay_flutter: ^1.4.0
+  video_thumbnail:
 
 
 dev_dependencies:
