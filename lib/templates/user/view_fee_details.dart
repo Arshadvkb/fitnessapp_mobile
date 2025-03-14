@@ -127,7 +127,7 @@ class ScheduleCard extends StatelessWidget {
           ElevatedButton(
             onPressed: () {
               Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => payfees()));
+                  context, MaterialPageRoute(builder: (context) => PaymentScreen()));
             },
             child: Text('Pay Now'),
           ),
