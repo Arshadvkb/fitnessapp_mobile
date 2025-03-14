@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:fitnessappnew/templates/expert/side_menu.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:http/http.dart' as http;
 
@@ -70,14 +71,26 @@ class _HealthtipState extends State<Healthtip> {
                             var jsonData = json.decode(responseData);
                             String status = jsonData['status'].toString();
                             if (status == "ok") {
+                              Fluttertoast.showToast(
+                                msg: "Health tip added successfully",
+                              );
                               print("ok");
                             } else {
+                              Fluttertoast.showToast(
+                                msg: "Error adding health tip",
+                              );
                               print("error");
                             }
                           } else {
+                            Fluttertoast.showToast(
+                              msg: "Server error",
+                            );
                             print("Server error");
                           }
                         } else {
+                          Fluttertoast.showToast(
+                            msg: "URL not found in SharedPreferences",
+                          );
                           print("URL not found in SharedPreferences");
                         }
                       }
