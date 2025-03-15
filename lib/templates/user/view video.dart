@@ -53,7 +53,8 @@ class _UserPostViewState extends State<UserPostView> {
     List<String> file = <String>[];
     List<String> description = <String>[];
     List<String> video_name = <String>[];
-    List<String> thumbnails = <String>[]; // For storing the generated thumbnail paths
+    List<String> thumbnails =
+        <String>[]; // For storing the generated thumbnail paths
 
     try {
       SharedPreferences sh = await SharedPreferences.getInstance();
@@ -77,7 +78,8 @@ class _UserPostViewState extends State<UserPostView> {
 
         // Generate video thumbnail
         String? thumbnailPath = await generateThumbnail(file[i]);
-        thumbnails.add(thumbnailPath ?? ""); // Add thumbnail path or empty string if failed
+        thumbnails.add(thumbnailPath ??
+            ""); // Add thumbnail path or empty string if failed
         print(arr[i]['video']);
       }
 
