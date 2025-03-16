@@ -10,6 +10,7 @@ import 'package:fitnessappnew/templates/user/track_your_workout.dart';
 import 'package:fitnessappnew/templates/user/view_health_tips.dart';
 import 'package:fitnessappnew/templates/user/chat_with_expert.dart';
 import 'package:fitnessappnew/templates/user/complaints.dart';
+import '../user/view_profile.dart';
 
 class HomePage extends StatefulWidget {
   @override

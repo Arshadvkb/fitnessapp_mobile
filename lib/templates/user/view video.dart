@@ -46,6 +46,7 @@ class _UserPostViewState extends State<UserPostView> {
   List<String> trainers_ = [];
   List<String> video_name_ = [];
   List<String> videoThumbnails = []; // List to store video thumbnail paths
+  List<String> videoName_ = [];
 
   void viewComplaints() async {
     List<int> id = <int>[];
