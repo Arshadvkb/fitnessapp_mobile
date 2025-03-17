@@ -1,4 +1,3 @@
-import 'package:fitnessappnew/templates/user/editprofile.dart';
 import 'package:fitnessappnew/templates/user/user_home.dart';
 import 'package:flutter/material.dart';
 import 'dart:convert';
