@@ -1,3 +1,4 @@
+import 'package:fitnessappnew/templates/expert/chat2.dart';
 import 'package:fitnessappnew/templates/expert/side_menu.dart';
 import 'package:fitnessappnew/templates/user/user_menu.dart';
 import 'package:fitnessappnew/templates/user/view_fee_details.dart';
@@ -180,6 +181,18 @@ class _HomePageState extends State<HomePage> {
                                   MaterialPageRoute(
                                     builder: (context) =>
                                         const view_fee_deatils(),
+                                  ),
+                                );
+                              },
+                            ),
+                            QuickActionCard(
+                              icon: Icons.money_outlined,
+                              title: 'Fee Payment',
+                              onTap: () {
+                                Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => const MyChatApp(),
                                   ),
                                 );
                               },
