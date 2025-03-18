@@ -1,5 +1,6 @@
 import 'package:fitnessappnew/templates/expert/chat2.dart';
 import 'package:fitnessappnew/templates/expert/side_menu.dart';
+import 'package:fitnessappnew/templates/user/cb.dart';
 import 'package:fitnessappnew/templates/user/user_menu.dart';
 import 'package:fitnessappnew/templates/user/view_fee_details.dart';
 import 'package:flutter/material.dart';
@@ -186,13 +187,13 @@ class _HomePageState extends State<HomePage> {
                               },
                             ),
                             QuickActionCard(
-                              icon: Icons.money_outlined,
-                              title: 'Fee Payment',
+                              icon: Icons.chat,
+                              title: 'Chatbot',
                               onTap: () {
                                 Navigator.push(
                                   context,
                                   MaterialPageRoute(
-                                    builder: (context) => const MyChatApp(),
+                                    builder: (context) => const chatbot(),
                                   ),
                                 );
                               },

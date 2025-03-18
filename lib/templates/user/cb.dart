@@ -4,9 +4,8 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
-
-class ChatApp extends StatelessWidget {
-  const ChatApp({Key? key}) : super(key: key);
+class chatbot extends StatelessWidget {
+  const chatbot({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
