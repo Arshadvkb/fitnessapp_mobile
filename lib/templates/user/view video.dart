@@ -78,10 +78,10 @@ class _UserPostViewState extends State<UserPostView> {
         file.add(sh.getString('imgurl').toString() + "/" + arr[i]['video']);
 
         // Generate video thumbnail
-        String? thumbnailPath = await generateThumbnail(file[i]);
-        thumbnails.add(thumbnailPath ??
-            ""); // Add thumbnail path or empty string if failed
-        print(arr[i]['video']);
+        // String? thumbnailPath = await generateThumbnail(file[i]);
+        // thumbnails.add(thumbnailPath ??
+        //     ""); // Add thumbnail path or empty string if failed
+        // print(arr[i]['video']);
       }
 
       setState(() {
@@ -90,7 +90,7 @@ class _UserPostViewState extends State<UserPostView> {
         description_ = description;
         trainers_ = trainers;
         video_name_ = video_name;
-        videoThumbnails = thumbnails;
+        // videoThumbnails = thumbnails;
       });
     } catch (e) {
       print("Error ------------------- " + e.toString());
@@ -98,23 +98,19 @@ class _UserPostViewState extends State<UserPostView> {
   }
 
   // Function to generate video thumbnail
-  Future<String?> generateThumbnail(String videoUrl) async {
-    final filePath = await VideoThumbnail.thumbnailFile(
-      video: videoUrl,
-      imageFormat: ImageFormat.JPEG,
-      maxHeight: 200,
-      quality: 75,
-    );
-    return filePath;
-  }
+  // Future<String?> generateThumbnail(String videoUrl) async {
+  //   final filePath = await VideoThumbnail.thumbnailFile(
+  //     video: videoUrl,
+  //     imageFormat: ImageFormat.JPEG,
+  //     maxHeight: 200,
+  //     quality: 75,
+  //   );
+  //   return filePath;
+  // }
 
   // Function to launch the URL
   Future<void> _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url);
-    } else {
-      Fluttertoast.showToast(msg: "Could not open the URL.");
-    }
+    await launch(url);
   }
 
   @override
@@ -173,18 +169,11 @@ class _UserPostViewState extends State<UserPostView> {
                           },
                           child: ClipRRect(
                             borderRadius: BorderRadius.circular(12),
-                            child: videoThumbnails[index].isNotEmpty
-                                ? Image.file(
-                                    File(videoThumbnails[index]),
-                                    width: double.infinity,
-                                    height: 200.0,
-                                    fit: BoxFit.cover,
-                                  )
-                                : const Icon(
-                                    Icons.videocam,
-                                    size: 100,
-                                    color: Colors.grey,
-                                  ),
+                            child: const Icon(
+                              Icons.videocam,
+                              size: 100,
+                              color: Colors.grey,
+                            ),
                           ),
                         ),
                         const SizedBox(height: 12),
