@@ -1,3 +1,4 @@
+import 'package:fitnessappnew/templates/user/user_home.dart';
 import 'package:fitnessappnew/templates/user/user_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:fluttertoast/fluttertoast.dart';
@@ -7,6 +8,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:video_thumbnail/video_thumbnail.dart';
 import 'dart:io';
+import '../user/user_home.dart';
 
 class UserViewCase extends StatelessWidget {
   const UserViewCase({super.key});
@@ -92,7 +94,7 @@ class _UserPostViewState extends State<UserPostView> {
         video_name_ = video_name;
         // videoThumbnails = thumbnails;
       });
-    } catch (e) {
+    } catch (e)  {
       print("Error ------------------- " + e.toString());
     }
   }
@@ -127,14 +129,15 @@ class _UserPostViewState extends State<UserPostView> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => HomePage()));
             },
           ),
           leadingWidth: 56.0,
-          title: Row(
+          title:const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              const Text(
+              Text(
                 'Online Video',
                 style: TextStyle(
                   color: Colors.white,
