@@ -75,7 +75,7 @@ class _trackdietPageState extends State<Trackdiet> {
 
 class ScheduleCard extends StatelessWidget {
   final String food;
-  final int quantity;
+  final String quantity;
   final String? time;
 
   const ScheduleCard({
@@ -129,7 +129,7 @@ class ScheduleCard extends StatelessWidget {
 // Model for ScheduleItem
 class ScheduleItem {
   final String food;
-  final int quantity;
+  final String quantity;
   final String? time;
 
   ScheduleItem({
