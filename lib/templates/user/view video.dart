@@ -94,7 +94,7 @@ class _UserPostViewState extends State<UserPostView> {
         video_name_ = video_name;
         // videoThumbnails = thumbnails;
       });
-    } catch (e)  {
+    } catch (e) {
       print("Error ------------------- " + e.toString());
     }
   }
@@ -129,12 +129,11 @@ class _UserPostViewState extends State<UserPostView> {
           leading: IconButton(
             icon: const Icon(Icons.arrow_back, color: Colors.white),
             onPressed: () {
-              Navigator.push(
-                  context, MaterialPageRoute(builder: (context) => HomePage()));
+              Navigator.pop(context);
             },
           ),
           leadingWidth: 56.0,
-          title:const Row(
+          title: const Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Text(

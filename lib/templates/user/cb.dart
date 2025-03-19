@@ -82,7 +82,7 @@ class _ChatScreenState extends State<ChatScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Chatbot'),
-        backgroundColor: Colors.teal,
+        backgroundColor: Colors.green,
       ),
       body: Column(
         children: [
@@ -100,7 +100,7 @@ class _ChatScreenState extends State<ChatScreen> {
                         const EdgeInsets.symmetric(vertical: 5, horizontal: 10),
                     padding: const EdgeInsets.all(12),
                     decoration: BoxDecoration(
-                      color: isUser ? Colors.teal[100] : Colors.grey[300],
+                      color: isUser ? Colors.green[100] : Colors.grey[300],
                       borderRadius: BorderRadius.circular(10),
                     ),
                     child: Text(
@@ -126,7 +126,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   ),
                 ),
                 IconButton(
-                  icon: const Icon(Icons.send, color: Colors.teal),
+                  icon: const Icon(Icons.send, color: Colors.green),
                   onPressed: () {
                     if (_controller.text.isNotEmpty) {
                       sendMessage(_controller.text);
