@@ -84,7 +84,7 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text(
+                    const Text(
                     'EVENTS',
                     style: TextStyle(
                       fontSize: 20,
