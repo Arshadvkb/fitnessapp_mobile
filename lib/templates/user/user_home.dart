@@ -14,12 +14,29 @@ import 'package:fitnessappnew/templates/user/chat_with_expert.dart';
 import 'package:fitnessappnew/templates/user/complaints.dart';
 import '../user/view_profile.dart';
 
+import 'dart:convert';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:shared_preferences/shared_preferences.dart';
+import 'package:http/http.dart' as http;
+
 class HomePage extends StatefulWidget {
   @override
   State<HomePage> createState() => _HomePageState();
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+    senddata();
+  }
+
+  String name = 'name';
+  String pin = 'pin';
+  String place = 'place';
+  String phone = 'phone';
+  String email = 'email';
+  String image = 'image';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -46,7 +63,7 @@ class _HomePageState extends State<HomePage> {
             Container(
               padding: EdgeInsets.all(20),
               color: const Color.fromARGB(255, 13, 101, 16),
-              child: const Row(
+              child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   Column(
@@ -62,7 +79,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       SizedBox(height: 5),
                       Text(
-                        'Arshad ', // Replace with dynamic user name
+                        name, // Dynamic user name
                         style: TextStyle(
                           color: Colors.white70,
                           fontSize: 18,
@@ -73,7 +90,27 @@ class _HomePageState extends State<HomePage> {
                   CircleAvatar(
                     radius: 30,
                     backgroundColor: Colors.white,
-                    child: Icon(Icons.person, size: 40, color: Colors.green),
+                    child: image != 'image'
+                        ? ClipOval(
+                            child: Image.network(
+                              image,
+                              width: 60,
+                              height: 60,
+                              fit: BoxFit.cover,
+                              errorBuilder: (context, error, stackTrace) {
+                                return Icon(
+                                  Icons.error,
+                                  size: 40,
+                                  color: Colors.red,
+                                );
+                              },
+                            ),
+                          )
+                        : Icon(
+                            Icons.person,
+                            size: 40,
+                            color: Colors.green,
+                          ),
                   ),
                 ],
               ),
@@ -84,7 +121,7 @@ class _HomePageState extends State<HomePage> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                    const Text(
+                  const Text(
                     'EVENTS',
                     style: TextStyle(
                       fontSize: 20,
@@ -266,6 +303,38 @@ class _HomePageState extends State<HomePage> {
         ),
       ),
     );
+  }
+
+  void senddata() async {
+    SharedPreferences sh = await SharedPreferences.getInstance();
+    String url = sh.getString('url').toString();
+    String lid = sh.getString('lid').toString();
+    final urls = Uri.parse(url + "/user_home");
+    try {
+      final response = await http.post(urls, body: {
+        'lid': lid,
+      });
+      if (response.statusCode == 200) {
+        String status = jsonDecode(response.body)['status'];
+        if (status == 'ok') {
+          setState(() {
+            email = jsonDecode(response.body)['email'].toString();
+            name = jsonDecode(response.body)['name'].toString();
+            phone = jsonDecode(response.body)['phone'].toString();
+
+            place = jsonDecode(response.body)['place'].toString();
+            image = sh.getString('imgurl2').toString() +
+                jsonDecode(response.body)['image'];
+          });
+        } else {
+          Fluttertoast.showToast(msg: 'Not Found');
+        }
+      } else {
+        Fluttertoast.showToast(msg: 'Network Error');
+      }
+    } catch (e) {
+      Fluttertoast.showToast(msg: e.toString());
+    }
   }
 }
 

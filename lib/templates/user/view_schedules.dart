@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'package:fitnessappnew/templates/user/user_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
@@ -80,6 +81,7 @@ class _TimeSchedulePageState extends State<TimeSchedulePage> {
         iconTheme:
             IconThemeData(color: Colors.green), // Change icon color to green
       ),
+      drawer: Usermennu(),
       body: ListView.builder(
         padding: EdgeInsets.all(20),
         itemCount: _scheduleItems.length,
