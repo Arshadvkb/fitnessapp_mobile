@@ -1,5 +1,7 @@
 import 'dart:convert';
+import 'package:fitnessappnew/templates/user/chat%20(1).dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,9 +25,10 @@ class _chatwithexpertState extends State<chatwithexpert> {
     final sh = await SharedPreferences.getInstance();
     String? url = sh.getString("url");
     String? lid = sh.getString("lid");
+    String? imgUrl = sh.getString("imgurl"); // Get the image URL here
 
-    if (url == null || lid == null) {
-      throw Exception('URL or LID is null');
+    if (url == null || lid == null || imgUrl == null) {
+      throw Exception('URL, LID, or imgUrl is null');
     }
 
     final response = await http.post(
@@ -41,34 +44,11 @@ class _chatwithexpertState extends State<chatwithexpert> {
 
       setState(() {
         _scheduleItems = List<ScheduleItem>.from(
-          data['data'].map((item) => ScheduleItem.fromJson(item)),
+          data['data'].map((item) => ScheduleItem.fromJson(item, imgUrl)),
         );
       });
     } else {
       throw Exception('Failed to load expert details');
-    }
-  }
-
-  Future<String?> getUsername() async {
-    SharedPreferences sh = await SharedPreferences.getInstance();
-    String? lid = sh.getString('lid');
-    String? url = sh.getString('url');
-    print(url);
-    print('iuuuuuuuurl');
-
-    try {
-      final response = await http.get(Uri.parse(url! + 'get-username/$lid/'));
-
-      if (response.statusCode == 200) {
-        final data = json.decode(response.body);
-        return data['username'];
-      } else {
-        print('Error: ${response.body}');
-        return null;
-      }
-    } catch (e) {
-      print('Exception: $e');
-      return null;
     }
   }
 
@@ -79,6 +59,15 @@ class _chatwithexpertState extends State<chatwithexpert> {
         title: Text('Chat with Expert'),
         iconTheme:
             IconThemeData(color: Colors.green), // Change icon color to green
+        leading: IconButton(
+          icon: Icon(
+            Icons.arrow_back,
+            color: (Colors.white),
+          ),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: ListView.builder(
         padding: EdgeInsets.all(20),
@@ -87,10 +76,23 @@ class _chatwithexpertState extends State<chatwithexpert> {
           final schedule = _scheduleItems[index];
           return Column(
             children: [
-              ScheduleCard(
-                expert: schedule.expert,
-                image: schedule.image,
-                email: schedule.email,
+              GestureDetector(
+                onTap: () {
+                  // Navigate to another page
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) =>
+                          MyChatPage(title: 'Chat with ${schedule.expert}'),
+                    ),
+                  );
+                },
+                child: ScheduleCard(
+                  expert: schedule.expert,
+                  image: schedule.image,
+                  email: schedule.email,
+                  LOGIN: schedule.LOGIN,
+                ),
               ),
               SizedBox(height: 16), // Add gap between containers
             ],
@@ -105,11 +107,13 @@ class ScheduleCard extends StatelessWidget {
   final String expert;
   final String image;
   final String email;
+  final String LOGIN;
 
   const ScheduleCard({
     required this.expert,
     required this.image,
     required this.email,
+    required this.LOGIN,
   });
 
   @override
@@ -129,24 +133,51 @@ class ScheduleCard extends StatelessWidget {
           ),
         ],
       ),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+      child: Row(
         children: [
-          Text(
-            'Date: $expert',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          CircleAvatar(
+            radius: 30,
+            backgroundImage: NetworkImage(image),
           ),
-          SizedBox(height: 5),
-          Text(
-            'Time: $image',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+          SizedBox(width: 10),
+          Expanded(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  ' $expert',
+                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+                ),
+                SizedBox(height: 5),
+                Text(
+                  ' $email',
+                  style: TextStyle(fontSize: 16),
+                ),
+                SizedBox(height: 10),
+                ElevatedButton(
+                  onPressed: () async {
+                    try {
+                      Fluttertoast.showToast(msg: "Chat with ID: ${LOGIN}");
+                      SharedPreferences sh =
+                          await SharedPreferences.getInstance();
+                      sh.setString(
+                          'clid', LOGIN.toString()); // Ensure lid is a string
+                      // Navigate to the ChatScreen and pass the tutor ID
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => MyChatApp(),
+                        ),
+                      );
+                    } catch (e) {
+                      Fluttertoast.showToast(msg: "Error: $e");
+                    }
+                  },
+                  child: Text('Chat'),
+                ),
+              ],
+            ),
           ),
-          SizedBox(height: 5),
-          Text(
-            'Trainer: $email',
-            style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
-          ),
-          SizedBox(height: 5),
         ],
       ),
     );
@@ -158,15 +189,50 @@ class ScheduleItem {
   final String expert;
   final String image;
   final String email;
+  final String LOGIN;
 
-  ScheduleItem(
-      {required this.expert, required this.image, required this.email});
+  ScheduleItem({
+    required this.expert,
+    required this.image,
+    required this.email,
+    required this.LOGIN,
+  });
 
-  factory ScheduleItem.fromJson(Map<String, dynamic> json) {
+  factory ScheduleItem.fromJson(Map<String, dynamic> json, String imageUrl) {
     return ScheduleItem(
       expert: json['name'],
-      image: json['image'],
+      image: "$imageUrl/${json['image']}",
       email: json['email'],
+      LOGIN: json['LOGIN'],
     );
   }
 }
+
+// Placeholder for the page to navigate to
+// class MyChatPage2 extends StatelessWidget {
+//   final String title;
+
+//   const MyChatPage2({required this.title});
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text(title),
+//       ),
+//       body: Center(
+//         child: Text('Chat Screen - Implement your chat functionality here!'),
+//       ),
+//     );
+//   }
+// }
+
+// class MyChatApp2 extends StatelessWidget {
+//   @override
+//   Widget build(BuildContext context) {
+//     return MaterialApp(
+//       debugShowCheckedModeBanner: false,
+//       home: MyChatPage(title: 'Chat with Expert'),
+//     );
+//   }
+// }

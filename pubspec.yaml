@@ -44,7 +44,6 @@ dependencies:
   url_launcher: 
   razorpay_flutter:
   video_thumbnail:
-  carousel_slider: 
 
 
 dev_dependencies:
