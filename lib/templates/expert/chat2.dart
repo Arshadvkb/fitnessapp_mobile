@@ -4,27 +4,6 @@ import 'package:http/http.dart' as http;
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
-void main() {
-  runApp(const MyChatApp());
-}
-
-class MyChatApp extends StatelessWidget {
-  const MyChatApp({super.key});
-
-  // This widget is the root of your application.
-  @override
-  Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.blue,
-      ),
-      home: const MyChatPage2(title: 'Flutter Demo Home Page'),
-    );
-  }
-}
-
 class MyChatPage2 extends StatefulWidget {
   const MyChatPage2({super.key, required this.title});
 
