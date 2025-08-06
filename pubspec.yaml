@@ -40,7 +40,6 @@ dependencies:
   fluttertoast: 
   http: 
   video_player: 
-  intl: 
   url_launcher: 
   razorpay_flutter:
   video_thumbnail:
