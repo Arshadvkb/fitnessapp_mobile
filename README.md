@@ -37,6 +37,13 @@
 ## Setup
 
 ```
+git clone https://github.com/Arshadvkb/fitnessapp_mobile.git
+```
+```
+cd fitnessapp_mobile
+```
+
+```
 flutter pub get
 flutter run
 ```
